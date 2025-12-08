@@ -1,6 +1,6 @@
 note
 	description: "Tests for SIMPLE_CLIPBOARD library"
-	testing: "type/manual"
+	testing: "covers"
 
 class
 	TEST_SIMPLE_CLIPBOARD
