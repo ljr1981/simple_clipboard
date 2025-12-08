@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <system xmlns="http://www.eiffel.com/developers/xml/configuration-1-23-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-23-0 http://www.eiffel.com/developers/xml/configuration-1-23-0.xsd" name="simple_clipboard" uuid="D4E5F6A7-B8C9-4D5E-0F1A-2B3C4D5E6F7A" library_target="simple_clipboard">
-	<description>Simple Clipboard Library - SCOOP-compatible Win32 clipboard access</description>
+	<description>Simple Clipboard Library - SCOOP-compatible with inline C</description>
 	<target name="simple_clipboard">
 		<root all_classes="true"/>
 		<file_rule>
@@ -16,12 +16,6 @@
 			<concurrency support="scoop" use="thread"/>
 			<void_safety support="all"/>
 		</capability>
-		<external_include location="$(SIMPLE_CLIPBOARD)\Clib"/>
-		<external_object location="$(SIMPLE_CLIPBOARD)\Clib\simple_clipboard.obj">
-			<condition>
-				<platform value="windows"/>
-			</condition>
-		</external_object>
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
 		<cluster name="src" location=".\src\" recursive="true"/>
 	</target>
