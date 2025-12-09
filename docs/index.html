@@ -3,55 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simple_clipboard - Clipboard Access for Eiffel</title>
+    <title>SIMPLE_CLIPBOARD - Documentation</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="images/logo.png">
 </head>
 <body>
     <header>
-        <div class="logo-container">
-            <img src="images/logo.png" alt="simple_* logo" class="logo">
-        </div>
-        <h1>simple_clipboard</h1>
-        <p class="tagline">Clipboard Access for Eiffel</p>
-        <div class="badges">
-            <span class="badge badge-rfc">Foundation Layer</span>
-            <span class="badge badge-version">v1.0.0</span>
-            <span class="badge badge-license">MIT</span>
-        </div>
+        <h1>SIMPLE_CLIPBOARD</h1>
+        <p>SCOOP-compatible clipboard access for Windows</p>
     </header>
 
     <nav>
-        <ul>
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#quick-start">Quick Start</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#api">API Reference</a></li>
-            <li><a href="https://github.com/simple-eiffel/simple_clipboard">GitHub</a></li>
-        </ul>
+        <a href="#overview">Overview</a>
+        <a href="#quick-start">Quick Start</a>
+        <a href="#api">API Reference</a>
+        <a href="https://github.com/simple-eiffel/simple_clipboard">GitHub</a>
     </nav>
 
     <main>
         <section id="overview">
             <h2>Overview</h2>
-            <p>
-                <strong>simple_clipboard</strong> provides SCOOP-compatible clipboard access for Eiffel
-                applications. It wraps the Win32 Clipboard API through a clean C interface, enabling
-                copy/paste operations without threading complications.
-            </p>
-            <p>
-                The library supports reading and writing text to the clipboard, checking clipboard status,
-                and clearing clipboard contents.
-            </p>
-            <p>
-                Part of the <strong>simple_*</strong> ecosystem of focused, single-purpose Eiffel libraries.
-            </p>
+            <p>SIMPLE_CLIPBOARD provides simple clipboard access for Eiffel applications on Windows. It uses inline C with Win32 API calls and is SCOOP-compatible.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>Get and set text from Windows clipboard</li>
+                <li>Check clipboard contents</li>
+                <li>Clear clipboard</li>
+                <li>Thread-safe operations</li>
+            </ul>
         </section>
 
         <section id="quick-start">
             <h2>Quick Start</h2>
-            <h3>Installation</h3>
-            <pre><code>&lt;library name="simple_clipboard" location="$SIMPLE_CLIPBOARD\simple_clipboard.ecf"/&gt;</code></pre>
+            <pre><code>&lt;library name="simple_clipboard" location="$SIMPLE_CLIPBOARD/simple_clipboard.ecf"/&gt;</code></pre>
 
             <h3>Basic Usage</h3>
             <pre><code>local
@@ -59,83 +43,36 @@
 do
     create cb
 
-    -- Copy text to clipboard
+    -- Copy to clipboard
     cb.set_text ("Hello, World!")
 
-    if cb.last_operation_succeeded then
-        print ("Text copied to clipboard%N")
-    end
-
-    -- Paste text from clipboard
+    -- Paste from clipboard
     if attached cb.text as t then
-        print ("Clipboard contains: " + t + "%N")
+        print (t)
     end
-
-    -- Check clipboard status
-    if cb.has_text then
-        print ("Clipboard has text%N")
-    end
-
-    -- Clear clipboard
-    cb.clear
 end</code></pre>
-        </section>
-
-        <section id="features">
-            <h2>Features</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>Get Text</h4>
-                    <p>Read text content from clipboard</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Set Text</h4>
-                    <p>Write text content to clipboard</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Clear</h4>
-                    <p>Remove all clipboard contents</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Status Queries</h4>
-                    <p>Check if clipboard has text or is empty</p>
-                </div>
-            </div>
         </section>
 
         <section id="api">
             <h2>API Reference</h2>
-
-            <h3>Access</h3>
             <table>
                 <tr><th>Feature</th><th>Description</th></tr>
-                <tr><td><code>text: detachable STRING_32</code></td><td>Get text from clipboard (Void if none)</td></tr>
-                <tr><td><code>paste</code></td><td>Alias for <code>text</code></td></tr>
-            </table>
-
-            <h3>Modification</h3>
-            <table>
-                <tr><th>Feature</th><th>Description</th></tr>
-                <tr><td><code>set_text (a_text)</code></td><td>Put text on clipboard</td></tr>
-                <tr><td><code>copy_text (a_text)</code></td><td>Alias for <code>set_text</code></td></tr>
-                <tr><td><code>clear</code></td><td>Clear all clipboard contents</td></tr>
-            </table>
-
-            <h3>Status Report</h3>
-            <table>
-                <tr><th>Feature</th><th>Description</th></tr>
-                <tr><td><code>has_text</code></td><td>Does clipboard contain text?</td></tr>
-                <tr><td><code>is_empty</code></td><td>Is clipboard empty (no data in any format)?</td></tr>
-                <tr><td><code>format_count</code></td><td>Number of different formats available</td></tr>
-                <tr><td><code>last_operation_succeeded</code></td><td>Did the last operation succeed?</td></tr>
+                <tr><td><code>text: detachable STRING_32</code></td><td>Get clipboard text</td></tr>
+                <tr><td><code>set_text (str)</code></td><td>Set clipboard text</td></tr>
+                <tr><td><code>has_text: BOOLEAN</code></td><td>Check if clipboard has text</td></tr>
+                <tr><td><code>is_empty: BOOLEAN</code></td><td>Check if clipboard is empty</td></tr>
+                <tr><td><code>clear</code></td><td>Clear clipboard</td></tr>
+                <tr><td><code>copy_text (str)</code></td><td>Alias for set_text</td></tr>
+                <tr><td><code>paste: detachable STRING_32</code></td><td>Alias for text</td></tr>
+                <tr><td><code>format_count: INTEGER</code></td><td>Number of formats available</td></tr>
+                <tr><td><code>last_operation_succeeded: BOOLEAN</code></td><td>Status of last operation</td></tr>
             </table>
         </section>
     </main>
 
     <footer>
-        <p>Part of the <a href="https://github.com/simple-eiffel">simple_*</a> library collection</p>
-        <p>Dependencies: base, encoding</p>
-        <p class="copyright">MIT License - Copyright (c) 2024-2025, Larry Rix</p>
+        <p>&copy; 2024-2025 Larry Rix. MIT License.</p>
+        <p><a href="https://github.com/simple-eiffel/simple_clipboard">GitHub</a></p>
     </footer>
 </body>
 </html>
